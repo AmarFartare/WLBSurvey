@@ -14,7 +14,15 @@ namespace SurveyApplication.Controllers
         {
             if (this.Session["EmployeeId"] == null)
                 return RedirectToAction("Login", "Account");
+            
             SurveyRepository surveyRepository = new SurveyRepository();
+            //Validate
+            var IsMySurveySubmitted = surveyRepository.IsMySurveySubmitted(this.Session["EmployeeId"].ToString());
+            if (IsMySurveySubmitted)
+            {
+                return RedirectToAction("SurveyDone", "Home");
+            }
+
             var model = new SurveyModel();
             model.EmployeeId = this.Session["EmployeeId"].ToString();
             model.Firstname = this.Session["Firstname"].ToString();
@@ -39,7 +47,7 @@ namespace SurveyApplication.Controllers
                     Id = question.Id,
                     QuestionId = question.Id,
                     Question = question.Question,
-                    DisplayOrder = question.DisplayOrder,
+                    DisplayOrder = question.DisplayOrder
                 });
             }
             return View(model);
@@ -48,8 +56,8 @@ namespace SurveyApplication.Controllers
         public ActionResult Index(SurveyModel model)
         {
             SurveyRepository surveyRepository = new SurveyRepository();
-            return RedirectToAction("Success", "Home");
-            /*var response = surveyRepository.AddServeyResponse(model);
+            //return RedirectToAction("Success", "Home");
+            var response = surveyRepository.AddServeyResponse(model);
 
 
             if (response)
@@ -61,10 +69,14 @@ namespace SurveyApplication.Controllers
             {
                 ViewBag.Unsuccessful = "Unable to submit your questionnaire";
             }
-            return View("Index", model);*/
+            return View("Index", model);
         }
         [HttpGet]
         public ActionResult Success()
+        {
+            return View();
+        }
+        public ActionResult SurveyDone()
         {
             return View();
         }

@@ -18,6 +18,7 @@
                 </td>
                 <td style="width:60%;border:1px solid green">
                     @Html.Label(Model.EmployeeId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.HiddenFor(x => x.EmployeeId)
                 </td>
                 <td style="width:20%;border:1px solid green" rowspan="4">
                     Abreviations used.  Please select the one which you consider appropriate one.
@@ -29,6 +30,8 @@
                 </td>
                 <td style="width:60%;border:1px solid green">
                     @Html.Label(Model.EmployeeName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.HiddenFor(x => x.Firstname)
+                    @Html.HiddenFor(x => x.Lastname)
                 </td>
             </tr>
             <tr>
@@ -37,6 +40,8 @@
                 </td>
                 <td style="width:60%;border:1px solid green">
                     @Html.Label(Model.DeptName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.HiddenFor(x => x.DeptCode)
+                    @Html.HiddenFor(x => x.DeptName)
                 </td>
             </tr>
             <tr>
@@ -45,6 +50,7 @@
                 </td>
                 <td style="width:60%;border:1px solid green">
                     @Html.Label(Model.Division, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.HiddenFor(x => x.Division)
                 </td>
             </tr>
             <tr>
@@ -53,6 +59,8 @@
                 </td>
                 <td style="width:60%;border:1px solid green">
                     @Html.Label(Model.DesigName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.HiddenFor(x => x.DesigCode)
+                    @Html.HiddenFor(x => x.DesigName)
                 </td>
                 <td style="width:20%;border:1px solid green; background-color:lightcoral">
                     <label>SDA-Strongly Disagree</label>
@@ -85,29 +93,46 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3"> 
-                  
-                </td>
+                <td colspan="3"></td>
             </tr>
             <tr>
                 <td style="width:20%;border:1px solid green; background-color:brown;color:white">#</td>
                 <td style="width:60%;border:1px solid green; background-color:brown;color:white">Statement</td>
                 <td style="width:20%;border:1px solid green; background-color:brown;color:white">Select</td>
             </tr>
-            @foreach (var question in Model.SurveyQuestions)
+            @for (var i = 0; i < Model.SurveyQuestions.Count(); i++)
             {
                 <tr>
                     <td style="width:20%;border:1px solid green;">
-                        @Html.Label(question.DisplayOrder.HasValue ? question.DisplayOrder.Value.ToString() : "", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.HiddenFor(x => Model.SurveyQuestions[i].Id)
+                        @Html.HiddenFor(x => Model.SurveyQuestions[i].Score)
+                        @Html.Label(Model.SurveyQuestions[i].Id.ToString(), htmlAttributes: new { @class = "control-label col-md-2" })
                     </td>
                     <td style="width:60%;border:1px solid green;">
-                        @Html.Label(question.Question, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.Label(Model.SurveyQuestions[i].Question, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.HiddenFor(x => Model.SurveyQuestions[i].Question)
+
                     </td>
                     <td style="width:20%;border:1px solid green;">
-                        @Html.DropDownList("SelectedOptionName", Model.OptionList,"-Select Option-", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.HiddenFor(x => Model.SurveyQuestions[i].SelectedOptionId)
+                        @Html.DropDownListFor(x => Model.SurveyQuestions[i].SelectedOptionName, Model.OptionList, "-Select Option-", htmlAttributes: new { @class = "control-label col-md-2" })
                     </td>
                 </tr>
+
             }
+            <tr>
+                <td style="width:20%">
+                    <label>Any Suggestions</label>
+                </td>
+                <td colspan="2" style="width:80%">
+                    @Html.TextAreaFor(x=>x.Suggetions, htmlAttributes: new { @class="control-label col-md-2" })
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                </td>
+            </tr>
         </table>
         <br />
         <div class="form-group pull-right">

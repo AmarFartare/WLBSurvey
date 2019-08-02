@@ -12,7 +12,6 @@ namespace SurveyApplication.Models
         public int ServeyHeaderId { get; set; }
         public int QuestionId { get; set; }
         public string Question { get; set; }
-        [Required(ErrorMessage = "Please Select Option")]
         public int SelectedOptionId { get; set; }
         public string SelectedOptionName { get; set; }
         public int Score { get; set; }

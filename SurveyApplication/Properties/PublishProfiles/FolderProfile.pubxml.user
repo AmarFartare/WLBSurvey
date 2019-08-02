@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Projects\SurveyApplication\bin\Release\Publish_V1.0</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Projects\SurveyApplication\bin\Release\Publish_V1.2</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -205,10 +205,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/13/2017 22:09:38</publishTime>
     </File>
     <File Include="bin/SurveyApplication.dll">
-      <publishTime>08/02/2019 11:13:08</publishTime>
+      <publishTime>08/02/2019 16:04:23</publishTime>
     </File>
     <File Include="bin/SurveyApplication.pdb">
-      <publishTime>08/02/2019 11:13:08</publishTime>
+      <publishTime>08/02/2019 16:04:23</publishTime>
     </File>
     <File Include="bin/System.Diagnostics.DiagnosticSource.dll">
       <publishTime>07/19/2017 10:01:30</publishTime>
@@ -256,7 +256,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/01/2019 22:01:24</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css">
-      <publishTime>08/01/2019 22:01:24</publishTime>
+      <publishTime>08/02/2019 15:15:52</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css.map">
       <publishTime>08/01/2019 22:01:24</publishTime>
@@ -331,7 +331,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/02/2019 10:31:55</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>08/02/2019 10:35:13</publishTime>
+      <publishTime>08/02/2019 15:39:48</publishTime>
     </File>
     <File Include="Views/Home/SignOut.cshtml">
       <publishTime>08/02/2019 10:42:47</publishTime>
@@ -339,11 +339,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Home/Success.cshtml">
       <publishTime>08/02/2019 10:41:50</publishTime>
     </File>
+    <File Include="Views/Home/SurveyDone.cshtml">
+      <publishTime>08/02/2019 16:03:42</publishTime>
+    </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>08/01/2019 22:00:54</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>08/02/2019 10:30:23</publishTime>
+      <publishTime>08/02/2019 15:17:56</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>08/01/2019 22:00:54</publishTime>
@@ -352,7 +355,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/01/2019 22:00:54</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/02/2019 11:13:08</publishTime>
+      <publishTime>08/02/2019 15:26:53</publishTime>
     </File>
   </ItemGroup>
 </Project>

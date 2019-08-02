@@ -15,8 +15,7 @@ namespace SurveyApplication.Models
             SurveyQuestions = new List<SurveyQuestions>();
             OptionList = new List<SelectListItem>();
         }
-        public int Id { get; set; }
-        [Required(ErrorMessage = "EmployeeId is required")]
+        public int Id { get; set; } 
         public string EmployeeId { get; set; }
         [Display(Name ="Employee Name")]
         public string EmployeeName { get; set; }
@@ -37,7 +36,7 @@ namespace SurveyApplication.Models
         public string ServeyScore { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
-
+        public string Suggetions { get; set; }
         [DisplayName("Options")]
         public List<SelectListItem> OptionList
         {

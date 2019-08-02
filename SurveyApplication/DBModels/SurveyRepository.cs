@@ -19,8 +19,19 @@ namespace SurveyApplication.DBModels
                              select objQuest).ToList();
             return questions;
         }
+        public bool IsMySurveySubmitted(string employeeId)
+        {
+            var survey = (from obj in WLBSurveyEntities.SurveyHeaders
+                          where obj.EmployeeId == employeeId
+                          select obj).FirstOrDefault();
+            if (survey == null)
+                return false;
+            else
+                return true;
+        }
         public bool AddServeyResponse(SurveyModel surveyModel)
         {
+            var options = GetAllOptions();
             SurveyHeader surveyHeader = new SurveyHeader();
             surveyHeader.EmployeeId = surveyModel.EmployeeId;
             surveyHeader.Firstname = surveyModel.Firstname;
@@ -31,13 +42,15 @@ namespace SurveyApplication.DBModels
             surveyHeader.DesigCode = surveyModel.DesigCode;
             surveyHeader.DesigName = surveyModel.DesigName;
             surveyHeader.ServeyScore = surveyModel.ServeyScore;
-            surveyHeader.CreatedDate = surveyModel.CreatedDate;
-            surveyHeader.CreatedBy = surveyModel.CreatedBy;
-
+            surveyHeader.CreatedDate = DateTime.Now;
+            surveyHeader.CreatedBy = surveyModel.EmployeeId;
+            surveyHeader.Suggetions = surveyModel.Suggetions;
             surveyHeader = WLBSurveyEntities.SurveyHeaders.Add(surveyHeader);
             WLBSurveyEntities.SaveChanges();
+            int surveyTotalScore = 0;
             foreach (SurveyQuestions question in surveyModel.SurveyQuestions)
             {
+                var score = options.FirstOrDefault(x => x.OptionCode == question.SelectedOptionName).Score;
                 WLBSurveyEntities.SurveyDetails.Add(new SurveyDetail()
                 {
                     ServeyHeaderId = surveyHeader.Id,
@@ -45,8 +58,10 @@ namespace SurveyApplication.DBModels
                     Question = question.Question,
                     SelectedOptionId = question.SelectedOptionId,
                     SelectedOptionName = question.SelectedOptionName,
-                    Score = question.Score
+                    Score = score
                 });
+                surveyTotalScore = surveyTotalScore + (score.HasValue?score.Value:0);
+                surveyHeader.ServeyScore = surveyTotalScore.ToString();                
                 WLBSurveyEntities.SaveChanges();
             }
             return true;
