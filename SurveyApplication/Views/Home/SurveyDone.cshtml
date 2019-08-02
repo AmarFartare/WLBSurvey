@@ -2,15 +2,22 @@
 @{
     ViewBag.Title = "SurveyDone";
 }
- 
+
 @using (Html.BeginForm("SignOut", "Home", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
+    <hr />
+    <br />
     <h2>Your response is already submitted!!!</h2>
-
-    <div class="form-group pull-right">
-        <div class="col-md-offset-2 col-md-10 pull-right">
+    <br />
+    <br />
+    <div class="pull-left">
+        <div class="pull-left">
             <input type="submit" value="Sign Out" class="btn btn-primary" />
         </div>
     </div>
+    <br />
+    <br /><br /><br />
+    <br />
+    <br />
 }

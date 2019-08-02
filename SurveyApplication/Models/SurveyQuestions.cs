@@ -13,6 +13,7 @@ namespace SurveyApplication.Models
         public int QuestionId { get; set; }
         public string Question { get; set; }
         public int SelectedOptionId { get; set; }
+        [Required(ErrorMessage = "Please select Option!!!")]
         public string SelectedOptionName { get; set; }
         public int Score { get; set; }
         public Nullable<int> DisplayOrder { get; set; }

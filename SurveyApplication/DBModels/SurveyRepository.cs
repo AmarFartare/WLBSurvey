@@ -50,18 +50,18 @@ namespace SurveyApplication.DBModels
             int surveyTotalScore = 0;
             foreach (SurveyQuestions question in surveyModel.SurveyQuestions)
             {
-                var score = options.FirstOrDefault(x => x.OptionCode == question.SelectedOptionName).Score;
+                var option = options.FirstOrDefault(x => x.OptionCode == question.SelectedOptionName);
                 WLBSurveyEntities.SurveyDetails.Add(new SurveyDetail()
                 {
                     ServeyHeaderId = surveyHeader.Id,
                     QuestionId = question.QuestionId,
                     Question = question.Question,
-                    SelectedOptionId = question.SelectedOptionId,
-                    SelectedOptionName = question.SelectedOptionName,
-                    Score = score
+                    SelectedOptionId = option.Id,
+                    SelectedOptionName = option.OptionName,
+                    Score = option.Score
                 });
-                surveyTotalScore = surveyTotalScore + (score.HasValue?score.Value:0);
-                surveyHeader.ServeyScore = surveyTotalScore.ToString();                
+                surveyTotalScore = surveyTotalScore + (option.Score.HasValue ? option.Score.Value : 0);
+                surveyHeader.ServeyScore = surveyTotalScore.ToString();
                 WLBSurveyEntities.SaveChanges();
             }
             return true;

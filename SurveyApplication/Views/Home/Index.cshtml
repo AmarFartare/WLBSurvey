@@ -8,10 +8,15 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    <hr />
     <div class="form-horizontal">
         <hr />
         <table style="border:1px solid green">
+            <tr>
+                <td colspan="3" style="width:100%;border:1px solid green; background-color:lightcoral;text-align:center">
+                    <h3>Work Life Balance - Questionnaire</h3>
+                </td>
+            </tr>
             <tr>
                 <td style="width:20%;border:1px solid green">
                     @Html.LabelFor(model => model.EmployeeId, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -67,7 +72,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" rowspan="4" style="width:80%;border:1px solid green;">
+                <td colspan="2" rowspan="4" style="width:80%;border:1px solid green; padding:10px;">
                     <span>
                         <b>Instructions: </b> Please read each statement and indicate your response as far as possible. There is no right or wrong answers.<br />
                         The result will be kept confidential and used for attaining high level of employee engagement score.
@@ -115,17 +120,18 @@
                     </td>
                     <td style="width:20%;border:1px solid green;">
                         @Html.HiddenFor(x => Model.SurveyQuestions[i].SelectedOptionId)
-                        @Html.DropDownListFor(x => Model.SurveyQuestions[i].SelectedOptionName, Model.OptionList, "-Select Option-", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.DropDownListFor(x => Model.SurveyQuestions[i].SelectedOptionName, Model.OptionList, "-Select Option-", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => Model.SurveyQuestions[i].SelectedOptionName, "", new { @class = "text-danger" })
                     </td>
                 </tr>
 
             }
             <tr>
-                <td style="width:20%">
+                <td style="width:20%;padding:12px">
                     <label>Any Suggestions</label>
                 </td>
                 <td colspan="2" style="width:80%">
-                    @Html.TextAreaFor(x=>x.Suggetions, htmlAttributes: new { @class="control-label col-md-2" })
+                    @Html.TextAreaFor(x => x.Suggetions, htmlAttributes: new { @class = "form-control" })
                 </td>
             </tr>
             <tr>
@@ -141,6 +147,10 @@
             </div>
         </div>
     </div>
+    <br />
+    <br />
+    <br />
+    <br />
 }
 
 @section Scripts {
